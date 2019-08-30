@@ -17,7 +17,10 @@ def get_current_user():
 def get_current_team():
     if authed():
         user = get_current_user()
-        return user.team
+        if user:
+            return user.team
+        else:
+            return None
     else:
         return None
 
