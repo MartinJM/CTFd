@@ -176,7 +176,7 @@ def import_ctf(backup, erase=True):
 
     members = first + members
 
-    alembic_version = json.loads(backup.open("db/alembic_version.json").read())[
+    alembic_version = json.loads(backup.open("db/alembic_version.json").read().decode("UTF-8")) [
         "results"
     ][0]["version_num"]
     upgrade(revision=alembic_version)
@@ -198,7 +198,7 @@ def import_ctf(backup, erase=True):
 
             try:
                 # Try to open a file but skip if it doesn't exist.
-                data = backup.open(member).read()
+                data = backup.open(member).read().decode("UTF-8")
             except KeyError:
                 continue
 
